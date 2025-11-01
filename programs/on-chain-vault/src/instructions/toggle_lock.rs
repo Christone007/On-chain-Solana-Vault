@@ -21,6 +21,22 @@ pub struct ToggleLock<'info> {
 }
 
 pub fn _toggle_lock(ctx: Context<ToggleLock>) -> Result<()> {
-    // TODO: Implement toggle lock functionality
-    todo!()
+    // bring in the vault
+    let vault = &mut ctx.accounts.vault;
+    let authority = &mut ctx.accounts.vault_authority;
+
+    // toggle its lock value
+    if vault.vault_authority == authority.key() {
+        vault.locked = !vault.locked;
+        
+        // emit event
+        emit!(ToggleLockEvent {
+            vault: vault.key(),
+            vault_authority: authority.key(),
+            locked: vault.locked,
+        });
+    }
+    
+    // retrun Result
+    Ok(())
 }
