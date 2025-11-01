@@ -26,10 +26,14 @@ pub struct Withdraw<'info> {
 
 pub fn _withdraw(ctx: Context<Withdraw>, amount: u64) -> Result<()> {
     // get the vault and authority
+    let vault = &mut ctx.accounts.vault;
+    let authority = &mut ctx.accounts.vault_authority;
 
     // verify vault is not locked
+    require!(vault.locked, VaultError::VaultLocked);
 
     // verify vault balance is >= amount
+    require!();
 
     // since vault is owned by the program, i don't need system_program for transfer
 
