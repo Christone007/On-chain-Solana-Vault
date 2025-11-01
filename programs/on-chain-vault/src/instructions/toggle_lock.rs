@@ -16,7 +16,7 @@ use crate::events::ToggleLockEvent;
 #[derive(Accounts)]
 pub struct ToggleLock<'info> {
     pub vault_authority: Signer<'info>,
-    #[account(mut)]
+    #[account(mut, has_one = vault_authority)]
     pub vault: Account<'info, Vault>
 }
 
@@ -25,7 +25,7 @@ pub fn _toggle_lock(ctx: Context<ToggleLock>) -> Result<()> {
     let vault = &mut ctx.accounts.vault;
     let authority = &mut ctx.accounts.vault_authority;
 
-    // toggle its lock value
+    // toggle its lock value if the signer is the vault authority stored in the vault
     if vault.vault_authority == authority.key() {
         vault.locked = !vault.locked;
         
@@ -36,7 +36,7 @@ pub fn _toggle_lock(ctx: Context<ToggleLock>) -> Result<()> {
             locked: vault.locked,
         });
     }
-    
+
     // retrun Result
     Ok(())
 }
