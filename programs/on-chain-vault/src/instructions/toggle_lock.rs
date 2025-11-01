@@ -15,8 +15,9 @@ use crate::events::ToggleLockEvent;
 
 #[derive(Accounts)]
 pub struct ToggleLock<'info> {
-    // TODO: Add required accounts and constraints
-    pub placeholder: Signer<'info>,
+    pub vault_authority: Signer<'info>,
+    #[account(mut)]
+    pub vault: Account<'info, Vault>
 }
 
 pub fn _toggle_lock(ctx: Context<ToggleLock>) -> Result<()> {
