@@ -18,10 +18,25 @@ use crate::events::WithdrawEvent;
 #[derive(Accounts)]
 pub struct Withdraw<'info> {
     // TODO: Add required accounts and constraints
-    pub placeholder: Signer<'info>,
+    #[account(mut)]
+    pub vault_authority: Signer<'info>,
+    #[account(mut, has_one = vault_authority)]
+    pub vault: Account<'info, Vault>,
 }
 
 pub fn _withdraw(ctx: Context<Withdraw>, amount: u64) -> Result<()> {
-    // TODO: Implement withdraw functionality
-    todo!()
+    // get the vault and authority
+
+    // verify vault is not locked
+
+    // verify vault balance is >= amount
+
+    // since vault is owned by the program, i don't need system_program for transfer
+
+    // deduct from vault balance and add to authority balance
+
+    // emit message
+
+    // return result
+
 }
