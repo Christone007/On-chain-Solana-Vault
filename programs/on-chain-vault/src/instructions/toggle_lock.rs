@@ -34,9 +34,8 @@ pub fn _toggle_lock(ctx: Context<ToggleLock>) -> Result<()> {
             vault: vault.key(),
             vault_authority: authority.key(),
             locked: vault.locked,
-        });
+        });    
     }
-
     // retrun Result
     Ok(())
 }
