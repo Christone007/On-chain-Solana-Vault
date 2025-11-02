@@ -40,8 +40,8 @@ pub fn _deposit(ctx: Context<Deposit>, amount: u64) -> Result<()> {
     // transfer the lamports using CPI to invoke system program
     // create the transfer instruction (sys prog): it takes the from pubkey, the to pubkey and the amount of lamports
     let transfer_instruction = transfer(
-        user.key(),
-        vault.key(),
+        &user.key(),
+        &vault.key(),
         amount
     );
 
