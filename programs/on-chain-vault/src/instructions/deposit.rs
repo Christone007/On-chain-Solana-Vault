@@ -56,6 +56,13 @@ pub fn _deposit(ctx: Context<Deposit>, amount: u64) -> Result<()> {
     )?;
 
     // emit success response
+    emit!(DepositEvent {
+        amount,
+        user: user.key(),
+        vault: vault.key(),
+        }
+    )
 
     // return result
+    Ok(())
 }
