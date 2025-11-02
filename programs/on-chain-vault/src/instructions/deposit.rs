@@ -27,6 +27,16 @@ pub struct Deposit<'info> {
 }
 
 pub fn _deposit(ctx: Context<Deposit>, amount: u64) -> Result<()> {
-    // TODO: Implement deposit functionality
-    todo!()
+    // retrieve the user and vault accounts
+    
+
+    // check if the user has more lamports balance
+
+    // verify that the vault is not locked
+
+    // transfer the lamports using CPI to invoke system program
+
+    // emit success response
+
+    // return result
 }
