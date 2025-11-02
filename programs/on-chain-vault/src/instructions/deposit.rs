@@ -61,7 +61,7 @@ pub fn _deposit(ctx: Context<Deposit>, amount: u64) -> Result<()> {
         user: user.key(),
         vault: vault.key(),
         }
-    )
+    );
 
     // return result
     Ok(())
