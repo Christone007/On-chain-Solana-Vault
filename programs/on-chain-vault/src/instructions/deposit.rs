@@ -19,8 +19,9 @@ use crate::events::DepositEvent;
 
 #[derive(Accounts)]
 pub struct Deposit<'info> {
-    // TODO: Add required accounts and constraints
-    pub placeholder: Signer<'info>,
+    pub user: Signer<'info>,
+    pub vault: Account<'info, Vault>,
+    pub system_program: Program<'info, System>
 }
 
 pub fn _deposit(ctx: Context<Deposit>, amount: u64) -> Result<()> {
